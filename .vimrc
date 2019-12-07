@@ -4,8 +4,16 @@ set nocompatible
 " Don't wrap files
 set nowrap
 
+" Enhance command line completion
+set wildmenu
+
+" Set completion behavior, see :help wildmode for details
+set wildmode=longest:full,list:full
+
+
 " Blink cursor on error instead of beeping (grr)
 set visualbell
+"set t_vb=
 
 " Encoding
 set encoding=utf-8
@@ -20,8 +28,24 @@ set omnifunc=syntaxcomplete#Complete
 " Color
 set cursorline
 
+let base16colorspace=256  " Access colors present in 256 colorspace"
+set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
+"set background=dark
+
 " Show line number / columns
 set ruler
+
+" Write the file when we leave the buffer
+set autowrite
+
+" Reload a file when it is changed from the outside
+set autoread
+
+" Hide buffers instead of closing them
+set hidden
+
+" Make backspace behave as expected
+set backspace=eol,indent,start
 
 " Rendering
 set ttyfast
@@ -46,8 +70,15 @@ hi Search ctermfg=Red
 set showmatch
 
 " Show last line
-set noshowmode
+"set noshowmode
+set showmode
 set showcmd
+
+" Enhance command line completion
+set wildmenu
+
+" Set completion behavior, see :help wildmode for details
+set wildmode=longest:full,list:full
 
 " Don't redraw while executing macros (performance config)
 set lazyredraw
