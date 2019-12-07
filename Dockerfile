@@ -43,30 +43,36 @@ RUN yum -y install unzip
 RUN yum -y install iptables
 RUN yum -y install crontabs
 RUN yum -y install telnet
-RUN yum -y install perl
-RUN yum -y install python3
-RUN yum -y install ruby
-RUN yum -y install git-lfs
-RUN git lfs install --force
-RUN yum -y install mlocate
-RUN yum -y install python3-pip
-RUN pip3 install --upgrade pip
-RUN pip3 install --upgrade pip;pip3 list --outdated --format=freeze | grep -v ^-e | cut -d = -f 1  | xargs -n1 pip3 install -U
-RUN gem install rubygems-update;update_rubygems;gem update --system;gem update
-RUN curl https://omnitruck.chef.io/install.sh | bash -s -- -P chefdk -c stable -v 4.6.35
 RUN yum -y install ansible
 RUN yum -y install dos2unix
 RUN yum -y install tree
 RUN yum -y install tmux
+RUN yum -y install mlocate
+
+RUN yum -y install git-lfs
+RUN git lfs install --force
+RUN git config --global core.longpaths true
+RUN git config --global core.editor vim
 
 RUN yum -y install groovy
 RUN yum -y install maven
 RUN yum -y install nodejs
 
+RUN yum -y install perl
+RUN yum -y install python3
+RUN yum -y install ruby
+RUN yum -y install python3-pip
+
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip;pip3 list --outdated --format=freeze | grep -v ^-e | cut -d = -f 1  | xargs -n1 pip3 install -U
+RUN gem install rubygems-update;update_rubygems;gem update --system;gem update
+RUN curl https://omnitruck.chef.io/install.sh | bash -s -- -P chefdk -c stable -v 4.6.35
+
 RUN yum -y upgrade
 RUN updatedb
 
 RUN cd /root/ ; git clone git://github.com/KittyKatt/screenFetch.git screenfetch ; cd screenfetch ; mv screenfetch-dev /usr/bin/screenfetch ; cd /root/ ; rm -rf screenfetch
+
 ADD .alias /root/
 ADD .vimrc /root/
 ADD .tmux.conf /root/
