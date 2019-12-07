@@ -21,7 +21,6 @@ set omnifunc=syntaxcomplete#Complete
 set cursorline
 
 " Show line number / columns
-set number
 set ruler
 
 " Rendering
