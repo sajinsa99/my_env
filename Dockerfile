@@ -81,4 +81,6 @@ RUN echo "screenfetch" >> /root/.bashrc
 RUN echo "echo" >> /root/.bashrc
 RUN echo "set bell-style visible" >> /root/.bashrc
 
+RUN cd /tmp/ ; rm -rf -- *
+
 WORKDIR /root
