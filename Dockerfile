@@ -82,5 +82,7 @@ RUN echo "echo" >> /root/.bashrc
 RUN echo "set bell-style visible" >> /root/.bashrc
 
 RUN cd /tmp/ ; rm -rf -- *
+RUN cd /var/tmp/ ; rm -rf -- *
+RUN cd /var/log/ ; rm -rf -- *
 
 WORKDIR /root
