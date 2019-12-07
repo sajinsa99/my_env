@@ -1,0 +1,5 @@
+to display spaces,tabs,eol :
+:set list
+
+to disable line number on the left :
+:set nonumber
