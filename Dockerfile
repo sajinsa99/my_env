@@ -35,7 +35,6 @@ RUN yum -y install nc
 RUN yum -y install htop
 RUN yum -y install mc
 RUN yum -y install strace
-RUN yum -y install lsof
 RUN yum -y install bind-utils
 RUN yum -y install net-tools
 RUN yum -y install zip
