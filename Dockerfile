@@ -1,77 +1,84 @@
-" Bruno
-" Don't try to be vi compatible (must set first)
-set nocompatible
+FROM centos:centos7.7.1908
 
-" Don't wrap files
-set nowrap
 
-" Blink cursor on error instead of beeping (grr)
-set visualbell
 
-" Encoding
-set encoding=utf-8
+RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/CET /etc/localtime
+RUN yum -y upgrade
+#RUN yum -y install glibc-langpack-en
+RUN yum -y install epel-release
+RUN yum -y install which
+RUN yum -y install wget
+RUN yum -y install curl
+RUN yum -y install git
+RUN yum -y install vim
+RUN yum -y install lsof
+RUN yum -y install crash
+RUN yum -y install collectl
+RUN yum -y install nmon
+RUN yum -y install psacct
+RUN yum -y install iptraf-ng
+RUN yum -y install bridge-utils
+RUN yum -y install iotop
+RUN yum -y install atop
+RUN yum -y install powertop
+RUN yum -y install iftop
+RUN yum -y install ngrep
+RUN yum -y install bmon
+RUN yum -y install traceroute
+RUN yum -y install saidar
+RUN yum -y install cpulimit
+RUN yum -y install lshw
+RUN yum -y install nload
+RUN yum -y install sysstat
+RUN yum -y install nmap
+RUN yum -y install nc
+RUN yum -y install htop
+RUN yum -y install mc
+RUN yum -y install strace
+RUN yum -y install lsof
+RUN yum -y install bind-utils
+RUN yum -y install net-tools
+RUN yum -y install zip
+RUN yum -y install unzip
+RUN yum -y install iptables
+RUN yum -y install crontabs
+RUN yum -y install telnet
+RUN yum -y install perl
+RUN yum -y install python3
+RUN yum -y install ruby
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
+RUN yum -y install git-lfs
+RUN git lfs install --force
+RUN yum -y install mlocate
+RUN yum -y install python3-pip
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip;pip3 list --outdated --format=freeze | grep -v ^-e | cut -d = -f 1  | xargs -n1 pip3 install -U
+RUN gem install rubygems-update;update_rubygems;gem update --system;gem update
+RUN curl https://omnitruck.chef.io/install.sh | bash -s -- -P chefdk -c stable -v 4.6.35
+RUN yum -y install ansible
+RUN yum -y install dos2unix
+RUN yum -y install tree
+RUN yum -y install tmux
 
-" Plugins essential
-syntax on
-filetype plugin indent on
+RUN yum -y install groovy
+RUN yum -y install maven
+RUN yum -y install nodejs
 
-" Autocomplétion intelligente
-set omnifunc=syntaxcomplete#Complete
+RUN yum -y upgrade
+RUN updatedb
 
-" Color
-set cursorline
+RUN cd /root/ ; git clone git://github.com/KittyKatt/screenFetch.git screenfetch ; cd screenfetch ; mv screenfetch-dev /usr/bin/screenfetch ; cd /root/ ; rm -rf screenfetch
+ADD .alias /root/
+ADD .vimrc /root/
+ADD .tmux.conf /root/
+ADD ps1 /root/
+RUN chmod 500 /root/.alias
+RUN chmod 500 /root/.vimrc
+RUN chmod 500 /root/.tmux.conf
+RUN echo ". .alias" >> /root/.bashrc
+RUN cat /root/ps1 >> /root/.bashrc ; rm -f /root/ps1
+RUN echo "echo" >> /root/.bashrc
+RUN echo "screenfetch" >> /root/.bashrc
+RUN echo "echo" >> /root/.bashrc
 
-" Show line number / columns
-set number
-set ruler
-
-" Rendering
-set ttyfast
-
-" Tab and indent
-set autoindent
-set smartindent
-set smarttab
-set noexpandtab
-set copyindent
-set preserveindent
-set softtabstop=0
-set shiftwidth=4
-set tabstop=4
-
-" Search
-set hlsearch " Highlight all search result
-hi Search ctermbg=LightYellow
-hi Search ctermfg=Red
-
-" Highlight matching brace
-set showmatch
-
-" Show last line
-set noshowmode
-set showcmd
-
-" Don't redraw while executing macros (performance config)
-set lazyredraw
-
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,eol:¬,space:·,extends:>,precedes:<
-set nolist
-
-" Number of undo levels
-set undolevels=1000
-
-" Set how many history vim has to remember
-set history=1000
-
-" Ignore files vim doesnt use
-set wildignore+=.git,.hg,.svn
-set wildignore+=*.aux,*.out,*.toc
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.rbc,*.class
-set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
-set wildignore+=*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg
-set wildignore+=*.mp3,*.oga,*.ogg,*.wav,*.flac
-set wildignore+=*.eot,*.otf,*.ttf,*.woff
-set wildignore+=*.doc,*.pdf,*.cbr,*.cbz
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
-set wildignore+=*.swp,.lock,.DS_Store,._*
+WORKDIR /root
