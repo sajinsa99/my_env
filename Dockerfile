@@ -1,3 +1,4 @@
+" Bruno
 " Don't try to be vi compatible (must set first)
 set nocompatible
 
