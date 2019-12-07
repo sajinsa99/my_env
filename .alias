@@ -1,0 +1,8 @@
+alias cpvu='rsync --progress -h -l -r -t -u -v'
+alias la='ls -alhF'
+alias lat='ls -althF'
+alias latr='ls -altrhF'
+alias ll='ls -lhF'
+alias ls='ls --color=auto'
+alias lt='ls -lthiF'
+alias ltr='ls -ltrhF'
