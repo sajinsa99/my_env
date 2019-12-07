@@ -6,6 +6,7 @@ RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/CET /etc/localtime
 RUN yum -y upgrade
 #RUN yum -y install glibc-langpack-en
 RUN yum -y install epel-release
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
 RUN yum -y install which
 RUN yum -y install wget
 RUN yum -y install curl
@@ -45,7 +46,6 @@ RUN yum -y install telnet
 RUN yum -y install perl
 RUN yum -y install python3
 RUN yum -y install ruby
-RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
 RUN yum -y install git-lfs
 RUN git lfs install --force
 RUN yum -y install mlocate
