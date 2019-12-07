@@ -71,14 +71,15 @@ RUN cd /root/ ; git clone git://github.com/KittyKatt/screenFetch.git screenfetch
 ADD .alias /root/
 ADD .vimrc /root/
 ADD .tmux.conf /root/
-ADD ps1 /root/
+ADD PS1.txt /root/
 RUN chmod 500 /root/.alias
 RUN chmod 500 /root/.vimrc
 RUN chmod 500 /root/.tmux.conf
 RUN echo ". .alias" >> /root/.bashrc
-RUN cat /root/ps1 >> /root/.bashrc ; rm -f /root/ps1
+RUN cat /root/PS1.txt >> /root/.bashrc ; rm -f /root/PS1.txt
 RUN echo "echo" >> /root/.bashrc
 RUN echo "screenfetch" >> /root/.bashrc
 RUN echo "echo" >> /root/.bashrc
+RUN echo "set bell-style visible" >> /root/.bashrc
 
 WORKDIR /root
