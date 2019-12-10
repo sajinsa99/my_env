@@ -5,3 +5,7 @@ B) to display line number on the left :
 :set number
 
 by default, A) & B) are disabled for copy-paste
+
+C) to indent the whole file
+: set smartindent
+ggvG=
