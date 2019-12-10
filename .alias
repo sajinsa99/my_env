@@ -1,6 +1,6 @@
 shopt -s expand_aliases
 alias cpvu='rsync --progress -h -l -r -t -u -v'
-alias ls='ls --color=auto -hF'                                                                                                                                
+alias ls='ls --color=auto -hF'
 alias ll='ls -l'
 alias la='ll -a'
 alias lat='ll -at'
@@ -9,3 +9,5 @@ alias lt='ll -t'
 alias ltr='lt -r'
 alias lss='ll -S'
 alias lssr='lss -r'
+alias lssa='lss -a'
+alias lssar='lssa -r'
