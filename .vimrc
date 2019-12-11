@@ -13,7 +13,7 @@ set wildmode=longest:full,list:full
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
-"set t_vb=
+set t_vb=
 
 " Encoding
 set encoding=utf-8
@@ -27,6 +27,10 @@ set omnifunc=syntaxcomplete#Complete
 
 " Color
 set cursorline
+
+" For some stupid reason, vim requires the term to begin with "xterm", so the
+" automatically detected "rxvt-unicode-256color" doesn't work.
+set term=xterm-256color
 
 let base16colorspace=256  " Access colors present in 256 colorspace"
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
@@ -42,8 +46,22 @@ set autowrite
 " Reload a file when it is changed from the outside
 set autoread
 
+" Write the file when we leave the buffer
+set autowrite
+
 " Hide buffers instead of closing them
 set hidden
+
+
+" Disable swapfiles too
+set noswapfile
+
+" Color the column after textwidth, usually the 80th
+"if version >= 703
+"  set colorcolumn=+1
+"endif
+
+set fillchars=vert:│
 
 " Make backspace behave as expected
 set backspace=eol,indent,start
@@ -62,6 +80,9 @@ set softtabstop=0
 set shiftwidth=4
 set tabstop=4
 
+" Allow mouse use in vim
+set mouse=a
+
 " Search
 set hlsearch " Highlight all search result
 hi Search ctermbg=LightYellow
@@ -74,6 +95,13 @@ set showmatch
 "set noshowmode
 set showmode
 set showcmd
+
+" Always show status line
+set laststatus=2
+
+" Format the status line
+" This status line comes from Pierre Bourdon's vimrc
+"set statusline=%f\ %l\|%c\ %m%=%p%%\ (%Y%R)
 
 " Enhance command line completion
 set wildmenu
@@ -105,3 +133,33 @@ set wildignore+=*.eot,*.otf,*.ttf,*.woff
 set wildignore+=*.doc,*.pdf,*.cbr,*.cbz
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
 set wildignore+=*.swp,.lock,.DS_Store,._*
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set "," as map leader
+let mapleader = ","
+
+" Toggle paste mode
+noremap <leader>pp :setlocal paste!<cr>
+
+" Move between rows in wrapped lines
+noremap j gj
+noremap k gk
+
+" Yank from cursor to end of line, to be consistent with C and D
+nnoremap Y y$
+
+" Write as root, when you forgot to sudoedit
+cnoreabbrev w!! w !sudo tee % >/dev/null
+
+" map ; to :
+noremap ; :
+
+" Open the quickfix window if there are errors, or close it if there are no
+" errors left
+noremap <leader>cw :botright :cw<cr>
+
+" Run make silently, then skip the 'Press ENTER to continue'
+noremap <leader>m :silent! :make! \| :redraw!<cr>
