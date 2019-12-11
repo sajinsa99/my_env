@@ -113,7 +113,7 @@ set wildmode=longest:full,list:full
 set lazyredraw
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·,eol:¬,space:·,extends:>,precedes:<
+set list listchars=tab:»─,trail:·,eol:¬,space:·,extends:>,precedes:<
 set nolist
 
 " Number of undo levels
