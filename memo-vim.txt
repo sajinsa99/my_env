@@ -9,3 +9,6 @@ by default, A) & B) are disabled for copy-paste
 C) to indent the whole file
 : set smartindent
 ggvG=
+
+D) close file without exiting vim
+:bd
