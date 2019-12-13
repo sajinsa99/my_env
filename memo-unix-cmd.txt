@@ -1,0 +1,79 @@
+!! : execute dernière commande
+
+open an editor to run a command
+ctrl+x+e
+=> ça ouvre un éditeur, vim par exemple, on tape sa ou ses commandes (sur 1 seule ligne)  et :wq pour l'éxecuter
+
+create a super fast ram disk
+mkdir -p /mnt/ram
+mount -t tmpfs tmpfs /mnt/ram -o size=8192M
+
+don't add command to history : add 1 space before the command (fonctionne pas toujours)
+ ls -l
+
+fix a really long command that you messed up
+fc
+rappelle la commande dans vi, on peut la compléter (sur 1 seule ligne) et :wq pour executer
+
+mkdir -p folder/{sub1,sub2}/{sub1,sub2,sub3}
+[root@9619496c74c1@2019-12-13 20:33:10:~/test(4)]>tree .
+.
+`-- folder
+    |-- sub1
+    |   |-- sub1
+    |   |-- sub2
+    |   `-- sub3
+    `-- sub2
+        |-- sub1
+        |-- sub2
+        `-- sub3
+
+mkdir -p folder/{1..5}/{1..5}
+tree .
+.
+`-- folder
+    |-- 1
+    |   |-- 1
+    |   |-- 2
+    |   |-- 3
+    |   |-- 4
+    |   `-- 5
+    |-- 2
+    |   |-- 1
+    |   |-- 2
+    |   |-- 3
+    |   |-- 4
+    |   `-- 5
+    |-- 3
+    |   |-- 1
+    |   |-- 2
+    |   |-- 3
+    |   |-- 4
+    |   `-- 5
+    |-- 4
+    |   |-- 1
+    |   |-- 2
+    |   |-- 3
+    |   |-- 4
+    |   `-- 5
+    `-- 5
+        |-- 1
+        |-- 2
+        |-- 3
+        |-- 4
+        `-- 5
+
+intercept stdout and log to file
+cat file | tee -a log | cat > /dev/null
+
+# exit terminal but leave all processes running
+disown -a && exit
+
+create path and cd inside it
+mkdir -p path/to/new/dir ; cd !$ 
+
+copy dir/file with same rootname
+eg copy toto -> tototiti:
+cp toto{,titi} =>
+toto
+tototiti
