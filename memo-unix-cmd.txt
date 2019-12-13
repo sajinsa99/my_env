@@ -84,3 +84,6 @@ ctrl-u : from cursor, cut beginning of command line (O position cursor) if docke
 ctrl-w : cut previous word of cursor in command line (O position cursor) if docker runO-it 310e5193c0f =>docker -it 310e5193c0f
 ctrl-y : to paste what cut previously,before the cursor
 
+better to run
+less +F file
+instead tail -f file
