@@ -2,7 +2,8 @@ A) to display spaces,tabs,eol :
 :set list
 
 B) to display line number on the left :
-:set number
+:set nu
+: set nu! to mask line number
 
 by default, A) & B) are disabled for copy-paste
 
@@ -15,3 +16,63 @@ D) close file without exiting vim
 
 E) vim -O fileA fileB : open the 2 files in 2 vertical windows (-o for horizontal)
 ctrl+w+ h|j|k|l to navigate between windows
+
+------
+a (ajoute un caractère après le curseur)
+A (pareil en fin de ligne)
+i (insertion)
+I (insertion en début de ligne)
+
+:w (enregistrer le fichier en cours d'édition sans quitter)
+:w /chemin/vers/le/fichier (enregistrer sous )
+:x ou :wq (enregistrer et quiter)
+:q (quitter)
+
+:1 (aller au début du fichier) ou 1G
+:10 (aller à la 10e ligne) ou 10G
+:$ (aller à la fin du fichier) ou G
+$ (place le curseur à la fin d'une ligne)
+
+u (annuler)
+. (refaire)
+
+:e! (recharge le fichier en annulant les modifications)
+
+d$ : supprime jusqu'à la fin de la ligne
+jd : supprime la ligne du dessous
+
+guu : mettre la ligne courante en minuscule
+gUU : mettre la ligne courante en majuscule
+
+déplacement ligne curseur :
+==========================
+
+[ctrl] + f : Descend d'un écran
+[ctrl] + b : Remonte d'un écran
+[ctrl] + d : Descend d'1/2 écran
+[ctrl] + u : Remonte d'1/2 écran
+
+H : En haut de l'écran
+M :  Au milieu de l'écran
+L : En bas de l'é
+
+déplacement curseur :
+===================
+h : Décale d'un caractère à gauche
+j : Descend d'une ligne
+k : Monte d'une ligne
+l : Décale d'un caractère à droite
+0 ou espace^: Au début de la ligne
+$ A la fin de la ligne
+w:  Au début du mot suivant
+e : A la fin du mot suivant
+b : Recule d'un mot
+
+Insertion d'un texte:
+====================
+i : Active l'insertion
+a : Active le mode insertion un caractère après le curseur
+I : Insère au début de la ligne
+A : Insère à la fin de la ligne
+O : Insère une ligne en dessus du curseur et passe en mode insertion
+o : Insère une ligne en dessous du curseur et passe en mode insertion
