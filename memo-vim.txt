@@ -76,3 +76,8 @@ I : Insère au début de la ligne
 A : Insère à la fin de la ligne
 O : Insère une ligne en dessus du curseur et passe en mode insertion
 o : Insère une ligne en dessous du curseur et passe en mode insertion
+
+recherche:
+==========
+n	Rechercher l'occurence suivante
+N	Rechercher l'occurence précédente
