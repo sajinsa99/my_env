@@ -77,3 +77,10 @@ eg copy toto -> tototiti:
 cp toto{,titi} =>
 toto
 tototiti
+
+cut undo in line command
+ctrl-k : from cursor, cut end of command line (O position cursor) if docker runO-it 310e5193c0f => docker run
+ctrl-u : from cursor, cut beginning of command line (O position cursor) if docker runO-it 310e5193c0f =>-it 310e5193c0f
+ctrl-w : cut previous word of cursor in command line (O position cursor) if docker runO-it 310e5193c0f =>docker -it 310e5193c0f
+ctrl-y : to paste what cut previously,before the cursor
+
