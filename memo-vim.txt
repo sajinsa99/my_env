@@ -18,10 +18,6 @@ E) vim -O fileA fileB : open the 2 files in 2 vertical windows (-o for horizonta
 ctrl+w+ h|j|k|l to navigate between windows
 
 ------
-a (ajoute un caractère après le curseur)
-A (pareil en fin de ligne)
-i (insertion)
-I (insertion en début de ligne)
 
 :w (enregistrer le fichier en cours d'édition sans quitter)
 :w /chemin/vers/le/fichier (enregistrer sous )
@@ -79,5 +75,66 @@ o : Insère une ligne en dessous du curseur et passe en mode insertion
 
 recherche:
 ==========
-n	Rechercher l'occurence suivante
-N	Rechercher l'occurence précédente
+* - search for word currently under cursor
+n	- Rechercher l'occurence suivante
+N	- Rechercher l'occurence précédente
+
+sélections:
+V       - selects entire lines 
+v       - selects range of text
+ctrl-v  - selects columns
+gv      - reselect block
+
+copiés-collés:
+==============
+        y       : copie la sélection. (Emploie le mode visuel ou copie implicitement tel yas vers yank une phrase - voir Mnemoniques ci-dessous)
+        yy      : copie la ligne courante.
+        Y       : copie la ligne courante.
+        d       : supprime (coupe) la sélection. Même usage que y.
+        dd      : supprime (coupe) la ligne courante.
+        D       : supprime depuis ici jusqu'à la fin de la ligne.
+        p       : copie la sélection (Coller est intelligent. Si vous copiez une ligne entière, il la placera au-dessous de la ligne courante .) Reportez-vous à 'ddp' ci-dessous dans claviers combos
+Notez que la portée de l'action de Y est différente de celle de D ; en effet, Y = yy. Si vous souhaitez modifier ce comportement, consultez la partie "Associer des commandes et leurs abréviations" plus loin.
+
+    fy     : copie la sélection et la colle dans le registre f
+
+markers:
+ mk      - mark current position (can use a-z)
+ 'k      - move to mark k
+ d'k     - delete from current position to mark k
+ 
+ folding (collape/expand):
+ ========================
+ select block, then :fold
+    zo - open
+    zc - close
+ 
+ tags:
+ =====
+ tags
+Using tags makes it easier to jump to certain parts of your programs. First run ctags from the UNIX command line on your source files (e.g., ctags prog.c or ctags -R to recurse) to generate a "tags" file, then use these while editing your source files:
+
+ :tag TAB            - list the known tags
+ :tag function_name  - jump to that function
+ ctrl-t   - goes to previous spot where you called :tag
+ ctrl-]   - calls :tag on the word under the cursor        
+ :ptag    - open tag in preview window (also ctrl-w })
+ :pclose  - close preview window
+ 
+ multiple windows
+ ================
+If you want, you can probably do everything from one vim session! :) Here are some commands to turn one vim session (inside one xterm) into multiple windows.
+
+ :e filename      - edit another file
+ :split filename  - split window and load another file
+ ctrl-w up arrow  - move cursor up a window
+ ctrl-w ctrl-w    - move cursor to another window (cycle)
+ ctrl-w_          - maximize current window
+ ctrl-w=          - make all equal size
+ 10 ctrl-w+       - increase window size by 10 lines
+ :vsplit file     - vertical split
+ :sview file      - same as split, but readonly
+ :hide            - close current window
+ :only            - keep only this window open
+ :ls              - show current buffers
+ :b 2             - open buffer #2 in this window
