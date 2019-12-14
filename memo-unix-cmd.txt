@@ -87,3 +87,56 @@ ctrl-y : to paste what cut previously,before the cursor
 better to run
 less +F file
 instead tail -f file
+
+set & shopt
+====
+pour connaître l'état des options de la commande interne set : set –o
+pour activer une option de la commande interne set : set –o option
+pour désactiver une option de la commande interne set : set +o option
+pour connaître l'état des options de la commande interne shopt : shopt
+pour activer une option de la commande interne shopt : shopt -s option
+pour désactiver une option de la commande interne shopt : shopt -u option
+shopt optons:
+dotglob signifie que les noms d’entrées commençant par . (caractère point) seront également traités
+nocaseglob signifie que les majuscules et minuscules ne seront pas différenciées
+nullglob signifie qu’un modèle ne correspondant à aucune entrée sera remplacé par une chaîne vide et non par le modèle lui-même
+failglob signifie qu’un modèle ne correspondant à aucune entrée provoquera une erreur.
+exemples :
+----------
+$ ls -la
+total 8
+drwxr-xr-x 2 sanchis sanchis 4096 nov.  24  2011 .
+drwxr-xr-x 5 sanchis sanchis 4096 nov.  27  2012 ..
+-rw-r--r-- 1 sanchis sanchis    0 nov.  24  2011 .sessions
+-rw-r--r-- 1 sanchis sanchis    0 nov.  24  2011 video
+-rw-r--r-- 1 sanchis sanchis    0 nov.  24  2011 viDEos
+$ 
+$ echo p*
+p*					=> comportement par défaut
+$ 
+$ shopt -s nullglob
+$ 
+$ echo p*
+					=>  chaîne vide	
+$ 
+$ shopt -s failglob
+$
+$ echo p*
+bash: Pas de correspondance : p*	=> message d’erreur
+$
+$ echo *s*
+viDEos					=> comportement par défaut
+$ 
+$ shopt -s dotglob
+$ 
+$ echo *s*
+.session viDEos			=> fichier caché .session pris en compte
+$ 
+$ echo *d*					
+Video					=> comportement par défaut
+$ 
+$ shopt -s nocaseglob
+$ 
+$ echo *d*
+video viDEos
+----------
