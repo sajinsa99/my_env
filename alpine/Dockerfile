@@ -1,13 +1,11 @@
-FROM alpine:20191114
+FROM alpine
 
 RUN apk update ; apk upgrade
+RUN apk add  vim bash
 
 ADD .alias /root/
 ADD .vimrc /root/
 ADD PS1.txt /root/
-
-RUN apk add  vim
-RUN apk add  bash
 
 RUN chmod 700 /root/.vimrc ;\
     unalias -a ;\
