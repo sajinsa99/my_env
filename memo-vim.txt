@@ -102,6 +102,8 @@ misc:
 =====
 effacer intérieur de ({... faire diw ou ciw pour et effacer et se mettre en mode insert
 copier intérieur, même principe : yiw
+incrémenter le 1er chiffre rencontré dans une ligne : Ctrl+a
+pour décrémenter : Ctrl+x
 
 markers:
 ========
