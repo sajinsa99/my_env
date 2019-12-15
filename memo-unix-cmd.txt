@@ -1,5 +1,17 @@
 !! : execute dernière commande
 
+ctrl+r puis le mot à chercher dans l'historique des commandes, le curseur se positonne sur le mot
+
+esc+. reprend le dernier argument de la précédente commande
+eg :
+vim a b
+exc.  => b
+
+esc+# : comment la ligne de commande en cour, et fait enter, peut servir pour préparer une commande
+ctrl+d : efface la lettre sur le curseur
+ctrl+w : efface à gauche jusqu'au début du mot
+
+
 open an editor to run a command
 ctrl+x+e
 => ça ouvre un éditeur, vim par exemple, on tape sa ou ses commandes (sur 1 seule ligne)  et :wq pour l'éxecuter
