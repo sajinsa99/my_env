@@ -11,6 +11,7 @@ esc+# : comment la ligne de commande en cour, et fait enter, peut servir pour pr
 ctrl+d : efface la lettre sur le curseur
 ctrl+w : efface à gauche jusqu'au début du mot
 
+for i in $(seq 10); do echo $i;done : execute 10x
 
 open an editor to run a command
 ctrl+x+e
