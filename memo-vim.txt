@@ -98,7 +98,13 @@ Notez que la portée de l'action de Y est différente de celle de D ; en effet, 
 
     fy     : copie la sélection et la colle dans le registre f
 
+misc:
+=====
+effacer intérieur de ({... faire diw ou ciw pour et effacer et se mettre en mode insert
+copier intérieur, même principe : yiw
+
 markers:
+========
  mk      - mark current position (can use a-z)
  'k      - move to mark k
  d'k     - delete from current position to mark k
