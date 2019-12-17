@@ -1,14 +1,14 @@
-    build docker image locally :
+    - build docker image locally :
 docker build -f Dockerfile -t devops-eds-bl  .
 
-    run container :
+    - run container :
 docker run -it `docker images | grep ansible-eds-bl | awk {'print $3'}`
 
-    run ansible inside docker container :
+    - run ansible inside docker container :
 cd ~/trainings/playbooks
 ansible-playbook playbook.yml
 
-    to create a new docker image from the container updated by ansible,and still running :
+    - to create a new docker image from the container updated by ansible,and still running :
 # in a new another terminal:
 docker ps | grep `docker images | grep ansible-eds-bl | awk {'print $3'}`
 # you should have something like that :
@@ -23,3 +23,4 @@ docker tag 4343381f999c toto
 docker images
 # you should find the same tag '4343381f999c" , with the tag name given above "toto":
 toto                latest              4343381f999c        About a minute ago   346MB
+# none, with tag "4343381f999c" should be vanished/renamed to "toto:latest"
