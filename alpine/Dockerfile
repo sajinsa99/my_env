@@ -52,6 +52,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 	chmod +x kubectl ; mv ./kubectl /usr/local/bin/kubectl
 
 #### install jdk + groovy + prodpassaccess
+# see playbook.yml
 # jdk
 # RUN apk add --no-cache openjdk8
 # ENV JAVA_HOME=/usr/lib/jvm/default-jvm
@@ -65,7 +66,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 
 # ENV PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:/opt/prodpasscess$PPA_VERSION:${PATH}
 
-
+ADD playbook.yml /root/trainings
 
 ENTRYPOINT ["/bin/bash"]
 WORKDIR /root
