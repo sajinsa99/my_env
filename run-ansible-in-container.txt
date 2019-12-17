@@ -1,2 +1,0 @@
-cd ~/trainings/playbooks
-ansible-playbook playbook.yml
