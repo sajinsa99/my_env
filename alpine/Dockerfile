@@ -48,13 +48,17 @@ RUN pip install ansible
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl ;\
 	chmod +x kubectl ; mv ./kubectl /usr/local/bin/kubectl
 
-# install jdk + groovy
-# ARG GROOVY_VERSION=2.5.8@
-# RUN apk add --no-cache openjdk8 ; cd /opt ; curl -L https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-$GROOVY_VERSION.zip -o groovy.zip ;\
-#	  unzip groovy.zip ; ln -s /opt/groovy-$GROOVY_VERSION/bin/grovy /usr/local/bin/groovy ; rm -f /opt/groovy.zip
+#### install jdk + groovy + prodpassaccess
+# jdk
+# RUN apk add --no-cache openjdk8
 # ENV JAVA_HOME=/usr/lib/jvm/default-jvm
 # ENV PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:${PATH}
-
+# groovy
+# ARG GROOVY_VERSION=2.5.8@
+# RUN cd /opt ; curl -L https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-$GROOVY_VERSION.zip -o groovy.zip ;\
+#	  unzip groovy.zip ; ln -s /opt/groovy-$GROOVY_VERSION/bin/grovy /usr/local/bin/groovy ; rm -f /opt/groovy.zip
+# prodpassaccess tool
+# RUN cd /opt ; wget
 
 
 ENTRYPOINT ["/bin/bash"]
