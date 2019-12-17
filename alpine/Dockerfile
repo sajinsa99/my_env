@@ -19,7 +19,7 @@ RUN chmod 700 /root/.vimrc ;\
     echo ". .alias" >> /root/.bashrc ;\
     cat /root/PS1.txt >> /root/.bashrc ;\
     rm -f /root/PS1.txt ;\
-    cd /root/ ;  mkdir -p .ssh trainings/playbooks
+    cd /root/ ;  mkdir -p .ssh .prodpassaccess trainings/playbooks
 
 # install python3 and pip
 ENV PYTHONUNBUFFERED=1
@@ -42,7 +42,7 @@ RUN apk add --no-cache python3-dev ca-certificates gcc libffi-dev openssl-dev mu
 # install ansible
 RUN pip install --upgrade --no-cache-dir ansible
 
-# remove some openstack pre-requisites
+# remove some openstack, ansible pre-requisites
 RUN apk del gcc musl-dev linux-headers libffi-dev ; rm -rf /var/cache/apk/*
 
 # install k8
