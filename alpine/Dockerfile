@@ -5,7 +5,10 @@ LABEL maintainer="bruno.fablet@sap.com"
 RUN apk update ; apk upgrade
 
 # install some tools
-RUN apk add --no-cache vim bash tree wget curl git openssh-client openssl dos2unix terraform perl ruby
+RUN apk add --no-cache vim bash tree wget curl git git-lfs openssh-client openssl dos2unix terraform perl ruby
+
+# enable git lfs
+RUN git install lfs --force
 
 # set some custom env
 ADD .alias /root/
