@@ -52,13 +52,16 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 # jdk
 # RUN apk add --no-cache openjdk8
 # ENV JAVA_HOME=/usr/lib/jvm/default-jvm
-# ENV PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:${PATH}
 # groovy
 # ARG GROOVY_VERSION=2.5.8@
 # RUN cd /opt ; curl -L https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-$GROOVY_VERSION.zip -o groovy.zip ;\
 #	  unzip groovy.zip ; ln -s /opt/groovy-$GROOVY_VERSION/bin/grovy /usr/local/bin/groovy ; rm -f /opt/groovy.zip
 # prodpassaccess tool
+# ARG PPA_VERSION=4.1
 # RUN cd /opt ; wget
+
+# ENV PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:/opt/prodpasscess$PPA_VERSION:${PATH}
+
 
 
 ENTRYPOINT ["/bin/bash"]
