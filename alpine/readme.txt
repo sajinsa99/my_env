@@ -1,4 +1,4 @@
-    build docker image :
+    build docker image locally :
 docker build -f Dockerfile -t devops-eds-bl  .
 
     run container :
