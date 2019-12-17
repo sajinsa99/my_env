@@ -8,7 +8,7 @@ RUN apk update ; apk upgrade
 RUN apk add --no-cache vim bash tree wget curl git git-lfs openssh-client openssl dos2unix terraform perl ruby
 
 # enable git lfs
-RUN git install lfs --force
+RUN git lfs install --force
 
 # set some custom env
 ADD .alias /root/
@@ -45,7 +45,7 @@ RUN pip install --upgrade --no-cache-dir pip setuptools python-openstackclient
 RUN apk del gcc musl-dev linux-headers libffi-dev ; rm -rf /var/cache/apk/*
 
 # install ansible
-RUN pip install ansible
+RUN pip install --upgrade --no-cache-dir ansible
 
 # install k8
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl ;\
