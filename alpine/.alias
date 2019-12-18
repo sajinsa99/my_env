@@ -16,4 +16,4 @@ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 
 #alias cpvu='rsync --progress -h -l -r -t -u -v'
 #alias vi='vim'
-#alias tree='tree -CalqN'
+#alias tree='tree -CalqN -I .git'
