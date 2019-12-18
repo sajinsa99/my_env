@@ -1,3 +1,3 @@
 tldr
 ranger
-fish
+fish  http://hyperpolyglot.org/unix-shells
