@@ -12,6 +12,7 @@ alias lssr='lss -r'
 alias lssa='lss -a'
 alias lssar='lssa -r'
 alias grep='grep --color=auto'
+alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 
 #alias cpvu='rsync --progress -h -l -r -t -u -v'
 #alias vi='vim'
