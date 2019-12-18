@@ -153,3 +153,6 @@ $
 $ echo *d*
 video viDEos
 ----------
+
+
+--- systemd-analyze critical-chain graphical.target ---
