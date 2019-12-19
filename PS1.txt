@@ -17,8 +17,7 @@ function my_prompt {
     PS1="\[\e]2;\u@\H \D{%F %T}\a\]"
     #check if root
     if [ $(id -u) -eq 0 ]; then
-        PS1+=" \e[1;31m\u" # root: red hostname
-        PSCHAR="\e[1;31m#\e[0m"
+        PS1+="\e[1m\e[91m\u\e[0m" # mark root as red
     else
         PS1+="\e[1;32m\u" # non-root: green hostname
     fi
