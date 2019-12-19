@@ -1,7 +1,40 @@
+function prompt_start {
+    PROMPT_TIMER=${PROMPT_TIMER:-`date +%s.%3N`}
+    echo -ne "\033]0;${@}\007"
+}
 
-NC="\[\e[0m\]"
-VERT="\[\e[32;40m\]"
-JAUNE="\[\e[33;40m\]"
-ROUGE="\[\e[31;40m\]"
-CYAN="\[\e[36;40m\]"
-export PS1="[$JAUNE\u$NC@$ROUGE\H$NC@$CYAN\D{%F %T}$NC:$VERT\w$NC(\#)]>"
+function my_prompt {
+    local EXIT="$?"
+    local NC="\[\e[0m\]"
+    local VERT="\[\e[32;40m\]"
+    local JAUNE="\[\e[33;40m\]"
+    local ROUGE="\[\e[31;40m\]"
+    local CYAN="\[\e[36;40m\]"
+    local PSCHAR="▶"
+
+    #PS1="[$VERT\u$NC@$ROUGE\H$NC@$CYAN\D{%F %T}$NC (\#)] "
+    #title
+    PS1="\[\e]2;\u@\H \D{%F %T}\a\]"
+    #check if root
+    if [ $(id -u) -eq 0 ]; then
+        PS1+=" \e[1;31m\u" # root: red hostname
+        PSCHAR="\e[1;31m#\e[0m"
+    else
+        PS1+="\e[1;32m\u" # non-root: green hostname
+    fi
+
+    PS1+="\e[0m$NC@$JAUNE\H$NC:$CYAN\w$NC "
+
+    if [ $EXIT != 0 ]
+    then
+        PS1+="(\#) \e[1;41m ✘ ${EXIT} " # red x with error status
+    else
+        PS1+="(\#) \e[1;42m ✔" # green tick
+    fi
+     PS1+=" $NC \e[0m${PSCHAR}$NC "
+
+    export PS1
+}
+
+trap 'prompt_start "$BASH_COMMAND"' DEBUG
+PROMPT_COMMAND=my_prompt
