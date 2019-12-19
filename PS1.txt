@@ -19,7 +19,7 @@ function my_prompt {
     if [ $(id -u) -eq 0 ]; then
         PS1+="\e[1m\e[91m\u\e[0m" # mark root as red
     else
-        PS1+="\e[1;32m\u" # non-root: green hostname
+        PS1+="\e[1;32m\u" # non root, mark user as green
     fi
 
     PS1+="\e[0m$NC@$JAUNE\H$NC:$CYAN\w$NC "
