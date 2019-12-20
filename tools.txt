@@ -4,7 +4,7 @@ tldr
 yum install nnn
 yum install lfm
 fish  http://hyperpolyglot.org/unix-shells
-mdp
+mdp (https://gitlab.com/xavki/syadmin_tips/blob/master/11-mdp-slides/script-install.sh)
 libnotify-bin
   commande : notify-send
 notify-send "message" -u critical -i face-worriedd
