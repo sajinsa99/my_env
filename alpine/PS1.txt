@@ -10,17 +10,16 @@ function my_prompt {
     local JAUNE="\[\e[33;40m\]"
     local ROUGE="\[\e[31;40m\]"
     local CYAN="\[\e[36;40m\]"
-    local PSCHAR="▶"
+    #local PSCHAR="▶"
 
     #PS1="[$VERT\u$NC@$ROUGE\H$NC@$CYAN\D{%F %T}$NC (\#)] "
     #title
     PS1="\[\e]2;\u@\H \D{%F %T}\a\]"
     #check if root
     if [ $(id -u) -eq 0 ]; then
-        PS1+=" \e[1;31m\u" # root: red hostname
-        PSCHAR="\e[1;31m#\e[0m"
+        PS1+="$ROUGE\u\e[0m" # mark root as red
     else
-        PS1+="\e[1;32m\u" # non-root: green hostname
+        PS1+="$VERT\u" # non root, mark user as green
     fi
 
     PS1+="\e[0m$NC@$JAUNE\H$NC:$CYAN\w$NC "
@@ -31,7 +30,13 @@ function my_prompt {
     else
         PS1+="(\#) \e[1;42m ✔" # green tick
     fi
-     PS1+=" $NC \e[0m${PSCHAR}$NC "
+    PS1+=" $NC \e[0m"
+    if [ $(id -u) -eq 0 ]; then
+        PS1+="#"
+    else
+        PS1+="$"
+    fi
+
 
     export PS1
 }
