@@ -4,6 +4,7 @@ tldr
 yum install nnn
 yum install lfm
 fish  http://hyperpolyglot.org/unix-shells
+mdp
 libnotify-bin
   commande : notify-send
 notify-send "message" -u critical -i face-worriedd
