@@ -35,7 +35,7 @@ function my_prompt {
 	else
 		PSCHAR="$"
 	fi
-	PS1+=" $NC \e[0m\n${PSCHAR}$NC"
+	PS1+=" $NC \e[0m\n↳${PSCHAR}$NC "
 
 	export PS1
 }
