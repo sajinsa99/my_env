@@ -11,6 +11,7 @@ function my_prompt {
     local ROUGE="\[\e[31;40m\]"
     local CYAN="\[\e[36;40m\]"
     #local PSCHAR="▶"
+    local PSCHAR="$"
 
     #PS1="[$VERT\u$NC@$ROUGE\H$NC@$CYAN\D{%F %T}$NC (\#)] "
     #title
@@ -30,13 +31,12 @@ function my_prompt {
     else
         PS1+="(\#) \e[1;42m ✔" # green tick
     fi
-    PS1+=" $NC \e[0m"
     if [ $(id -u) -eq 0 ]; then
-        PS1+="#"
+        PSCHAR="#"
     else
-        PS1+="$"
+        PSCHAR="$"
     fi
-
+    PS1+=" $NC \e[0m${PSCHAR}$NC"
 
     export PS1
 }
