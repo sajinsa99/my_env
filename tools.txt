@@ -1,5 +1,5 @@
 tldr
-* ranger
+* ranger (apt-get install ranger)
 * vifm
 fish  http://hyperpolyglot.org/unix-shells
 libnotify-bin
