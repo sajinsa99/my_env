@@ -1,6 +1,8 @@
 tldr
 * ranger (yum install ranger | https://www.vultr.com/docs/how-to-install-ranger-terminal-file-manager-on-linux)
 * vifm (yum install vifm)
+yum install nnn
+yum install lfm
 fish  http://hyperpolyglot.org/unix-shells
 libnotify-bin
   commande : notify-send
