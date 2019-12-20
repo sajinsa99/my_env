@@ -1,5 +1,6 @@
 tldr
-ranger
+* ranger
+* vifm
 fish  http://hyperpolyglot.org/unix-shells
 libnotify-bin
   commande : notify-send
