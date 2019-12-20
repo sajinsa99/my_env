@@ -22,7 +22,7 @@ function my_prompt {
         PS1+="$VERT\u" # non root, mark user as green
     fi
 
-    PS1+="\e[0m$NC@$JAUNE\H$NC:$CYAN\w$NC "
+    PS1+="\e[0m$NC@$JAUNE\H$NC:$VERT\w$NC "
 
     if [ $EXIT != 0 ]
     then
