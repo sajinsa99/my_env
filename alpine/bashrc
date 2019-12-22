@@ -1,0 +1,2 @@
+# instead cd Documents, just type DOcuments
+shopt -s autocd
