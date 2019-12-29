@@ -9,3 +9,4 @@ libnotify-bin
   commande : notify-send
 notify-send "message" -u critical -i face-worriedd
                       -u normal -t 7500 -i checkbox-checked-symbolic
+windows terminal
