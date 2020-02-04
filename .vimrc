@@ -1,6 +1,35 @@
 " Don't try to be vi compatible (must set first)
 set nocompatible
 
+scriptencoding utf-8
+set encoding=utf-8
+
+" For some stupid reason, vim requires the term to begin with "xterm", so the
+" automatically detected "rxvt-unicode-256color" doesn't work.
+set term=xterm-256color
+let base16colorspace=256  " Access colors present in 256 colorspace"
+set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
+set background=dark
+colorscheme delek
+
+set guifont=Monaco:h13
+set antialias
+
+" completion bar menu
+set wmnu
+
+" display last line if masked
+set display+=lastline
+
+" show nb change  if > 0
+set report=0
+
+" set cursor at last position last time
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
 " Don't wrap files
 set nowrap
 
@@ -13,13 +42,19 @@ set wildmode=longest:full,list:full
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
+set noerrorbells
 set t_vb=
 
 " Encoding
 set encoding=utf-8
 
+" no bom char
+"set nobomb
+set fencs-=ucs-bom
+
 " Plugins essential
 syntax on
+filetype on
 filetype plugin indent on
 
 " Autocomplétion intelligente
@@ -27,15 +62,8 @@ set omnifunc=syntaxcomplete#Complete
 
 " Color
 set cursorline
-
-" For some stupid reason, vim requires the term to begin with "xterm", so the
-" automatically detected "rxvt-unicode-256color" doesn't work.
-set term=xterm-256color
-
-let base16colorspace=256  " Access colors present in 256 colorspace"
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
-set background=dark
-colorscheme delek
+"set cursorcolumn
+"hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 
 " Show line number / columns
 set ruler
@@ -70,20 +98,28 @@ set backspace=eol,indent,start
 set ttyfast
 
 " Tab and indent
+"" use 4 spaces for tabs
+set tabstop=4 softtabstop=4 shiftwidth=4
+
+" convert spaces to tabs when reading file
+autocmd! bufreadpost * set noexpandtab | retab! 4
+
+" convert tabs to spaces before writing file
+autocmd! bufwritepre * set expandtab | retab! 4
+
+" convert spaces to tabs after writing file (to show guides again)
+autocmd! bufwritepost * set noexpandtab | retab! 4
 set autoindent
 set smartindent
 set smarttab
-set noexpandtab
 set copyindent
 set preserveindent
-set softtabstop=0
-set shiftwidth=4
-set tabstop=4
 
 " Allow mouse use in vim
 set mouse=a
 
 " Search
+set incsearch
 set hlsearch " Highlight all search result
 hi Search ctermbg=LightYellow
 hi Search ctermfg=Red
@@ -97,7 +133,7 @@ set showmode
 set showcmd
 
 " Always show status line
-set laststatus=2
+"set laststatus=2
 
 " Format the status line
 " This status line comes from Pierre Bourdon's vimrc
@@ -112,7 +148,12 @@ set wildmode=longest:full,list:full
 " Don't redraw while executing macros (performance config)
 set lazyredraw
 
+set title
+
+set scrolloff=3
+
 " Display extra whitespace
+"set list listchars=tab:»·,trail:·,eol:¬,space:·,extends:>,precedes:<
 set list listchars=tab:»─,trail:·,eol:¬,space:·,extends:>,precedes:<
 set nolist
 
@@ -163,3 +204,38 @@ noremap <leader>cw :botright :cw<cr>
 
 " Run make silently, then skip the 'Press ENTER to continue'
 noremap <leader>m :silent! :make! \| :redraw!<cr>
+
+" status
+" Some funky status bar code its seems
+" https://stackoverflow.com/questions/9065941/how-can-i-change-vim-status-line-colour
+set laststatus=2            " set the bottom status bar
+
+function! ModifiedColor()
+    if &mod == 1
+        hi statusline guibg=White ctermfg=8 guifg=OrangeRed4 ctermbg=15
+    else
+        hi statusline guibg=White ctermfg=8 guifg=DarkSlateGray ctermbg=15
+    endif
+endfunction
+
+au InsertLeave,InsertEnter,BufWritePost   * call ModifiedColor()
+" default the statusline when entering Vim
+hi statusline guibg=White ctermfg=8 guifg=DarkSlateGray ctermbg=15
+
+" Formats the statusline
+set statusline=%f                           " file name
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%y      "filetype
+set statusline+=%h      "help file flag
+set statusline+=[%{getbufvar(bufnr('%'),'&mod')?'modified':'saved'}]
+"modified flag
+
+set statusline+=%r      "read only flag
+
+set statusline+=\ %=                        " align left
+set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
+set statusline+=\ Col:%c                    " current column
+set statusline+=\ Buf:%n                    " Buffer number
+set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
+set statusline+=\ [%{strftime('%a\ %d/%m/%y\ %H:%M:%S')}]\  "date time
