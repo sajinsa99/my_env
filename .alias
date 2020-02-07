@@ -1,5 +1,4 @@
 shopt -s expand_aliases
-alias cpvu='rsync --progress -h -l -r -t -u -v'
 alias ls='ls --color=auto -hF'
 alias ll='ls -l'
 alias la='ll -a'
@@ -11,4 +10,33 @@ alias lss='ll -S'
 alias lssr='lss -r'
 alias lssa='lss -a'
 alias lssar='lssa -r'
+
 alias grep='grep --color=auto'
+alias tree='tree -CalqN -I .git'
+alias cpvu='rsync  --progress -c -h -l -r -t -u -v'
+alias cpmir='rsync --progress -c -h -l -r -t -u -v --delete-after --delete'
+
+alias vi='vim'
+alias df='df -h'
+
+alias which='alias | /usr/local/bin/which -i --show-dot --show-tilde'
+
+
+alias sysinfo='system_profiler -detailLevel full'
+alias h='history'
+alias explorer='open'
+alias delofx='cd $HOME/Downloads && ll *.ofx && rm -vf *.ofx && cd'
+
+alias brewupd='brew update && brew upgrade'
+alias brewclean='brew cleanup -s'
+
+alias adaclean='gnatclean'
+alias adamake='gnatmake'
+
+alias backdoc='cd /Users/bfablet && cpvu Documents /Volumes/BF-Documents/ >& docs.log &'
+alias backdownloads='cd /Users/bfablet && cpvu Downloads /Volumes/BF-Downloads/ >& downloads.log &'
+alias backimpots='cd /Users/bfablet/Documents/PRIVATE/pers && cpvu impots /Volumes/IMPOTS/ >& impots.log &'
+alias backsalaires='cd /Users/bfablet/Documents/PRIVATE/pers && cpvu SAP /Volumes/SAP-SALAIRE >& salaires.log'
+
+alias sshimac='ssh bfablet@192.168.0.62'
+alias sshlog='grep sshd /var/log/system.log'
