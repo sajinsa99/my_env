@@ -1,0 +1,22 @@
+xport BIN_HOME=$HOME/bin
+
+#export ADA_HOME=$BIN_HOME/ada/latest
+export JAVA_HOME=$BIN_HOME/jdk/latest
+export GROOVY_HOME=$BIN_HOME/groovy/latest
+export PPA_HOME=$BIN_HOME/ppa/latest
+#export DEVS_PATH=$ADA_HOME/bin:$JAVA_HOME/bin:$GROOVY_HOME/bin
+export DEVS_PATH=$JAVA_HOME/bin:$GROOVY_HOME/bin:$PPA_HOME/bin
+
+export PERL_HOME=$BIN_HOME/perl/latest
+#export RUBY_HOME=$BIN_HOME/ruby/latest
+#export PYTHON_HOME=$BIN_HOME/python/latest
+
+#export SCRIPTS_PATH=$RUBY_HOME/bin:$PERL_HOME/bin:$PYTHON_HOME/bin
+export SCRIPTS_PATH=$PERL_HOME/bin
+
+
+alias perlupd='ppm upgrade --install'
+#alias perlupd='cpan -u'
+alias pythonupd='pip install --upgrade pip;pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
+#alias rubyupd='gem install rubygems-update;update_rubygems;gem update --system;gem update'
+alias rubyupd='gem install rubygems-update &&gem update --system && gem update'
