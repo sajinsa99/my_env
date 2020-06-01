@@ -33,6 +33,8 @@ autocmd BufReadPost *
 " Don't wrap files
 set nowrap
 
+set path+=**
+
 " Enhance command line completion
 set wildmenu
 
@@ -209,6 +211,16 @@ noremap <leader>m :silent! :make! \| :redraw!<cr>
 " Some funky status bar code its seems
 " https://stackoverflow.com/questions/9065941/how-can-i-change-vim-status-line-colour
 set laststatus=2            " set the bottom status bar
+
+" FILE BROWSING:
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 function! ModifiedColor()
     if &mod == 1
