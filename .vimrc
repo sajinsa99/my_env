@@ -104,13 +104,20 @@ set ttyfast
 set tabstop=4 softtabstop=4 shiftwidth=4
 
 " convert spaces to tabs when reading file
-autocmd! bufreadpost * set noexpandtab | retab! 4
+"autocmd! bufreadpost * set noexpandtab | retab! 4
 
 " convert tabs to spaces before writing file
-autocmd! bufwritepre * set expandtab | retab! 4
+"autocmd! bufwritepre * set expandtab | retab! 4
 
 " convert spaces to tabs after writing file (to show guides again)
-autocmd! bufwritepost * set noexpandtab | retab! 4
+"autocmd! bufwritepost * set noexpandtab | retab! 4
+
+set spell
+set spelllang=en
+set spellsuggest=10
+set belloff=esc
+set confirm
+
 set autoindent
 set smartindent
 set smarttab
@@ -210,7 +217,7 @@ noremap <leader>m :silent! :make! \| :redraw!<cr>
 " status
 " Some funky status bar code its seems
 " https://stackoverflow.com/questions/9065941/how-can-i-change-vim-status-line-colour
-set laststatus=2            " set the bottom status bar
+"set laststatus=2           " set the bottom status bar
 
 " FILE BROWSING:
 
