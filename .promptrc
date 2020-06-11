@@ -3,6 +3,13 @@ function prompt_start {
     echo -ne "\033]0;${@}\007"
 }
 
+gb() {
+        echo -n ' (' && git branch 2>/dev/null | grep '^*' | colrm 1 2 | tr -d '\n' && echo  -n ') '
+}
+git_branch() {
+        gb | sed 's/ ()//'
+}
+
 function my_prompt {
     local EXIT="$?"
     local NC="\[\e[0m\]"
@@ -11,6 +18,7 @@ function my_prompt {
     local BLEU="\e[38;5;27m"
     #local ROUGE="\e[38;5;9m"
     local ROUGE="\[\e[31;40m\]"
+    local JAUNE="\[\e[33;40m\]" # bold yellow
 
     local PSCHAR="$"
 
@@ -24,7 +32,7 @@ function my_prompt {
         PS1+="$BLEU\u" # non root, mark user as green
     fi
 
-    PS1+="\e[0m$NC@$BLANC\H$NC:$VERT\w$NC "
+    PS1+="\e[0m$NC@$BLANC\H$NC:$VERT\w${NC}$JAUNE\$(git_branch)$NC"
 
     if [ $EXIT != 0 ]
     then
@@ -38,7 +46,7 @@ function my_prompt {
     else
         PSCHAR="${VERT}↳ $"
     fi
-    PS1+=" \n${PSCHAR} $NC "
+    PS1+=" ${PSCHAR}$NC "
     export PS1
 }
 
