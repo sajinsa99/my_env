@@ -112,9 +112,6 @@ set tabstop=4 softtabstop=4 shiftwidth=4
 " convert spaces to tabs after writing file (to show guides again)
 "autocmd! bufwritepost * set noexpandtab | retab! 4
 
-set spell
-set spelllang=en
-set spellsuggest=10
 set belloff=esc
 set confirm
 
@@ -237,6 +234,15 @@ hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
 " Status line
 " default: set statusline=%f\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)
 
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
 " Status Line Custom
 let g:currentmode={
     \ 'n'  : 'Normal',
@@ -268,14 +274,16 @@ set statusline+=%0*\ %{toupper(g:currentmode[mode()])}\  " The current mode
 set statusline+=%3*│                                     " Separator
 set statusline+=%0*\ %n\                                 " Buffer number
 set statusline+=%3*│                                     " Separator
+set statusline+=+=%0*\%{StatuslineGit()}
+set statusline+=%3*│                                     " Separator
 
+set statusline+=%1*\ %<%F%m%r%h%w\                       " File path, modified, readonly, helpfile, preview
+set statusline+=%3*│                                     " Separator
 set statusline+=%2*\ col:\ %02v\                         " Colomn number
 set statusline+=%3*│                                     " Separator
 set statusline+=%1*\ ln:\ %02l/%L\ (%3p%%)\              " Line number / total lines, percentage of document
 set statusline+=%3*│                                     " Separator
 
-set statusline+=%1*\ %<%F%m%r%h%w\                       " File path, modified, readonly, helpfile, preview
-set statusline+=%3*│                                     " Separator
 set statusline+=%2*\ %Y\                                 " FileType
 set statusline+=%3*│                                     " Separator
 set statusline+=%2*\ %{''.(&fenc!=''?&fenc:&enc).''}     " Encoding
