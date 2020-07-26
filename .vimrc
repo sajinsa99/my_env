@@ -217,9 +217,12 @@ noremap <leader>m :silent! :make! \| :redraw!<cr>
 "set laststatus=2           " set the bottom status bar
 
 " FILE BROWSING:
+set splitbelow                      " Puts new split windows to the bottom of the current
+set splitright                      " Puts new vsplit windows to the right of the current
 
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
+
 let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
@@ -294,4 +297,5 @@ set statusline+=%{strftime('%a\ %d/%m/%y\ %H:%M:%S')}    "date time
 hi User1 ctermfg=007 ctermbg=239 guibg=#4e4e4e guifg=#adadad
 hi User2 ctermfg=007 ctermbg=236 guibg=#303030 guifg=#adadad
 hi User3 ctermfg=236 ctermbg=236 guibg=#303030 guifg=#303030
+
 hi User4 ctermfg=239 ctermbg=239 guibg=#4e4e4e guifg=#4e4e4e
