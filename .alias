@@ -11,7 +11,7 @@ alias lssr='lss -r'
 alias lssa='lss -a'
 alias lssar='lssa -r'
 
-alias grep='grep --color=auto'
+alias grep='grep --color=auto --exclude-dir=.git'
 alias tree='tree -CalqN -I .git'
 alias cpvu='rsync  --progress -c -h -l -r -t -u -v'
 alias cpmir='rsync --progress -c -h -l -r -t -u -v --delete-after --delete'
