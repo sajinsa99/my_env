@@ -365,3 +365,9 @@ inoremap ",<CR> "<CR>",<ESC>O
 inoremap (,<CR> (<CR>),<ESC>O
 inoremap [,<CR> [<CR>],<ESC>O
 inoremap {,<CR> {<CR>},<ESC>O
+
+" tabs
+hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
+hi TabLine ctermfg=Blue ctermbg=Yellow
+hi TabLineSel ctermfg=Red ctermbg=Yellow
+hi Title ctermfg=LightBlue ctermbg=Magenta
