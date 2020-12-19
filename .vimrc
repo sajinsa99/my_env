@@ -371,3 +371,18 @@ hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
 hi TabLine ctermfg=Blue ctermbg=Yellow
 hi TabLineSel ctermfg=Red ctermbg=Yellow
 hi Title ctermfg=LightBlue ctermbg=Magenta
+"
+" more than 80 chars
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn' ,'\%81v', 100)
+
+nnoremap <silent> n n:call HLNext(0.1)<cr>
+nnoremap <silent> N N:call HLNext(0.1)<cr>
+function! HLNext (blinktime)
+  let target_pat = '\c\%#'.@/
+  let ring = matchadd('ErrorMsg', target_pat, 101)
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+  call matchdelete(ring)
+  redraw
+endfunction
