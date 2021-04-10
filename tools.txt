@@ -11,5 +11,8 @@ notify-send "message" -u critical -i face-worriedd
                       -u normal -t 7500 -i checkbox-checked-symbolic
 calcurse
 
+ncdu
+less +F 
+
 windows terminal
 
