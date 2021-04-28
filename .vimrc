@@ -13,7 +13,7 @@ set background=dark
 colorscheme delek
 
 set guifont=Monaco:h13
-set antialias
+"set antialias
 
 " completion bar menu
 set wmnu
@@ -35,23 +35,12 @@ set nowrap
 
 set path+=**
 
-" Enhance command line completion
-set wildmenu
-
-" Set completion behavior, see :help wildmode for details
-set wildmode=longest:full,list:full
-
-
 " Blink cursor on error instead of beeping (grr)
 set visualbell
 set noerrorbells
 set t_vb=
 
-" Encoding
-set encoding=utf-8
-
 " no bom char
-"set nobomb
 set fencs-=ucs-bom
 
 " Plugins essential
@@ -76,9 +65,6 @@ set autowrite
 " Reload a file when it is changed from the outside
 set autoread
 
-" Write the file when we leave the buffer
-set autowrite
-
 " Hide buffers instead of closing them
 set hidden
 
@@ -86,10 +72,7 @@ set hidden
 " Disable swapfiles too
 set noswapfile
 
-" Color the column after textwidth, usually the 80th
-"if version >= 703
-"  set colorcolumn=+1
-"endif
+set nobackup
 
 set fillchars=vert:│
 
@@ -113,8 +96,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4
 "autocmd! bufwritepost * set noexpandtab | retab! 4
 
 set belloff=esc
-set confirm
-
+"set confirm
 set autoindent
 set smartindent
 set smarttab
@@ -134,16 +116,8 @@ hi Search ctermfg=Red
 set showmatch
 
 " Show last line
-"set noshowmode
-set showmode
+" set showmode
 set showcmd
-
-" Always show status line
-"set laststatus=2
-
-" Format the status line
-" This status line comes from Pierre Bourdon's vimrc
-"set statusline=%f\ %l\|%c\ %m%=%p%%\ (%Y%R)
 
 " Enhance command line completion
 set wildmenu
@@ -159,8 +133,9 @@ set title
 set scrolloff=3
 
 " Display extra whitespace
-"set list listchars=tab:»·,trail:·,eol:¬,space:·,extends:>,precedes:<
 set list listchars=tab:»─,trail:·,eol:¬,space:·,extends:>,precedes:<
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
 set nolist
 
 " Number of undo levels
@@ -211,13 +186,8 @@ noremap <leader>cw :botright :cw<cr>
 " Run make silently, then skip the 'Press ENTER to continue'
 noremap <leader>m :silent! :make! \| :redraw!<cr>
 
-" status
-" Some funky status bar code its seems
-" https://stackoverflow.com/questions/9065941/how-can-i-change-vim-status-line-colour
-"set laststatus=2           " set the bottom status bar
-
 " FILE BROWSING:
-set splitbelow                      " Puts new split windows to the bottom of the current
+"set splitbelow                      " Puts new split windows to the bottom of the current
 set splitright                      " Puts new vsplit windows to the right of the current
 
 " Tweaks for browsing
@@ -233,9 +203,6 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 au InsertEnter * hi statusline guifg=black guibg=#d7afff ctermfg=black ctermbg=magenta
 au InsertLeave * hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
 hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
-
-" Status line
-" default: set statusline=%f\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)
 
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
@@ -376,8 +343,9 @@ hi Title ctermfg=LightBlue ctermbg=Magenta
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn' ,'\%81v', 100)
 
-nnoremap <silent> n n:call HLNext(0.1)<cr>
-nnoremap <silent> N N:call HLNext(0.1)<cr>
+nnoremap <silent> n n:call HLNext(0.5)<cr>
+nnoremap <silent> N N:call HLNext(0.5)<cr>
+
 function! HLNext (blinktime)
   let target_pat = '\c\%#'.@/
   let ring = matchadd('ErrorMsg', target_pat, 101)
@@ -386,3 +354,4 @@ function! HLNext (blinktime)
   call matchdelete(ring)
   redraw
 endfunction
+
